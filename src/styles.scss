@@ -1,1 +1,99 @@
 /* You can add global styles to this file, and also import other style files */
+// utilities.scss
+
+$spacings: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 0.75rem,
+  4: 1rem,
+  // Add more spacing values as needed
+);
+$dimensions: ((h, height), (w, width));
+$directions: (row, row-reverse, column, column-reverse);
+
+$alignments: (start, end, center, between, around);
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.d-flex {
+  display: flex;
+}
+
+@each $key, $value in $spacings {
+  .m-#{$key} {
+    margin: #{$value};
+  }
+
+  .p-#{$key} {
+    padding: #{$value};
+  }
+}
+// flex-utils.scss
+
+@each $alignment in $alignments {
+  .align-#{$alignment} {
+    align-items: #{$alignment};
+  }
+
+  .justify-#{$alignment} {
+    justify-content: #{$alignment};
+  }
+}
+
+@each $direction in $directions {
+  .flex-#{$direction} {
+    flex-direction: #{$direction};
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.shipping-card {
+  min-width: 120px;
+  margin: 20px auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row { 
+  display: flex;
+  flex-direction: row; 
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+@for $i from 1 through 100 {
+    .h-#{$i} {
+      height: #{$i}rem;
+    }
+  
+    .w-#{$i} {
+      width: #{$i}rem; 
+    }
+  }
+
+
+  .mdc-card.right{
+    align-items: flex-end;
+  }
+  .mdc-card.left{
+    align-items: flex-start;
+  }

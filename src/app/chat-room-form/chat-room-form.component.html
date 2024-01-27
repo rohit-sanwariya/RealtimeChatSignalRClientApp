@@ -1,0 +1,46 @@
+<p-dialog [(visible)]="show" [style]="{width: '30vw'}"   (onHide)="onClose.emit()">
+  <p-header>Welcome to Fake Chat!</p-header>
+
+  <form [formGroup]="chatForm" novalidate (ngSubmit)="onSubmit()">
+    <section class="shipping-card">
+ 
+ 
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="User Name"
+                formControlName="username"
+              />
+              @if (chatForm.controls['username'].hasError('required')) {
+              <mat-error>User Name is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="Chat Room"
+                formControlName="chatroom"
+              />
+              @if (chatForm.controls['chatroom'].hasError('required')) {
+              <mat-error>Chat Room is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+ 
+ 
+ 
+    </section>
+
+  <p-footer>
+    <button [disabled]="chatForm.invalid" mat-raised-button color="primary" type="submit">Submit</button>
+    
+  </p-footer>
+</form>
+</p-dialog>

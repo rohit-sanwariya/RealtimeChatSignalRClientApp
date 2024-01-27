@@ -1,0 +1,51 @@
+@if(showDialog){
+<app-chat-room-form
+  [show]="showDialog"
+  (onClose)="onSubmit($event)"
+></app-chat-room-form>
+
+} @if(_signalR.messages.length){
+<h1>Chat Room:  <button
+  class="m-3 w-10"
+
+  mat-flat-button
+  color="primary"
+>
+{{ _signalR.chatRoom }}
+</button> </h1>
+<section class="messageContainer">
+  @for(message of _signalR.messages;track message.message){
+  <mat-card
+    class="m-4 {{ _signalR.username === message.username ? 'right' : 'left' }}"
+  >
+    <mat-card-header>
+      <mat-card-subtitle>{{ message.username }}</mat-card-subtitle>
+      <mat-card-title>{{ message.message }}</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+  }
+  <mat-form-field class="m-4">
+    <mat-label>Enter You Message</mat-label>
+    <textarea
+      class="m-4"
+      cdkTextareaAutosize
+      matInput
+      [formControl]="_signalR.messageInput"
+      #text
+      (keydown)="messageSubmit($event, text)"
+    >
+    </textarea>
+  </mat-form-field>
+</section>
+} @else {
+<section class="d-flex justify-end">
+  <button
+    class="m-3 w-10"
+    (click)="showDialog = true"
+    mat-raised-button
+    color="primary"
+  >
+    Join Room
+  </button>
+</section>
+}
